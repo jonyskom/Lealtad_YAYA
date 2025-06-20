@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html style="height: 100%; margin: 0;">
 <head>
-    <title>Auto Refresh Power BI</title>
-    <meta http-equiv="refresh" content="3600">
+    <title>Auto Refresh Power BI - Sincronizado por hora</title>
+    <script>
+        function refreshAtTopOfHour() {
+            const now = new Date();
+            const nextHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
+            const delay = nextHour.getTime() - now.getTime();
+
+            console.log("Recargando en", delay / 1000, "segundos");
+
+            setTimeout(() => {
+                location.reload(true);
+            }, delay);
+        }
+    </script>
 </head>
-<body style="margin: 0; height: 100%;">
+<body style="margin: 0; height: 100%;" onload="refreshAtTopOfHour()">
     <iframe 
         src="https://app.powerbi.com/view?r=eyJrIjoiNDE5ZDlhZGQtOGVmNy00ZGU0LWFlOTYtYTU0ZDBlZjRhMGUyIiwidCI6IjQyMmNlZDMwLWZjMjAtNGUyYi04NzRkLWMyZjJiNmE2ZmM1NiIsImMiOjR9" 
         style="border: none; width: 100%; height: 100%;" 
-        allowFullScreen="true">
+        allowfullscreen="true">
     </iframe>
 </body>
 </html>
